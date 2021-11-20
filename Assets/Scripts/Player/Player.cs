@@ -6,6 +6,9 @@ using CustomVariablesTC;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] GameObject canonUp;
+    [SerializeField] GameObject canonDown;
+
     [SerializeField] [Range(1f, 20f)] float speed = 5f;
     [SerializeField] [Range(0f, 2f)] float accelerationTime = 1f;
 
@@ -31,6 +34,8 @@ public class Player : MonoBehaviour
     private float currAcceleration = 0f;
 
     public Shield Shield => shield;
+    public GameObject CanonUp => canonUp;
+    public GameObject CanonDown => canonDown;
 
     private void Awake()
     {
@@ -76,6 +81,18 @@ public class Player : MonoBehaviour
         {
             Bullet newBullet = bulletPool.Request().GetComponent<Bullet>();
             newBullet.Spawn(rb.position);
+
+            if (canonUp.activeInHierarchy)
+            {
+                Bullet newBulletUp = bulletPool.Request().GetComponent<Bullet>();
+                newBulletUp.Spawn(canonUp.transform.position);
+            }
+
+            if (canonDown.activeInHierarchy)
+            {
+                Bullet newBulletDown = bulletPool.Request().GetComponent<Bullet>();
+                newBulletDown.Spawn(canonDown.transform.position);
+            }
         }
     }
 

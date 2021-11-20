@@ -11,6 +11,9 @@ public class Obstacle : MonoBehaviour, IEnemy
     [SerializeField] [Range(0.1f, 2f)] float minScale = 0.5f;
     [SerializeField] [Range(0.1f, 2f)] float maxScale = 1.4f;
 
+    [SerializeField] [Range(10f, 50f)] float minRotationSpeed = 15f;
+    [SerializeField] [Range(10f, 50f)] float maxRotationSpeed = 30f;
+
     [SerializeField] [Range(1, 3)] int damageOnCollision = 1;
 
     [SerializeField] [Range(0, 100)] int dropRate = 30;
@@ -27,6 +30,7 @@ public class Obstacle : MonoBehaviour, IEnemy
 
     private float speed = 1f;
     private float scale = 1f;
+    private float rotationSpeed = 0f;
 
     public int Damage => damageOnCollision;
 
@@ -42,6 +46,8 @@ public class Obstacle : MonoBehaviour, IEnemy
 
         cam = Camera.main;
         camWidth = cam.orthographicSize * cam.aspect * 1.2f;
+
+        rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
     }
 
     private void Update()
@@ -58,7 +64,7 @@ public class Obstacle : MonoBehaviour, IEnemy
     public void Move()
     {
         rb.MovePosition(rb.position + Vector2.left * speed * Time.deltaTime);
-        // TODO - Auto rotation
+        rb.MoveRotation(rb.rotation + rotationSpeed * Time.deltaTime);
     }
 
     public void TakeDamage(int amount)
@@ -76,6 +82,7 @@ public class Obstacle : MonoBehaviour, IEnemy
         float yPos = Random.Range(-cam.orthographicSize + spriteHeight, cam.orthographicSize - spriteHeight);
         transform.position = new Vector2(camWidth, yPos);
         GetRandomScale();
+        rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
 
         gameObject.SetActive(true);
     }
