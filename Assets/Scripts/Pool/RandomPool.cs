@@ -5,16 +5,14 @@ using UnityEngine;
 namespace PoolTC
 {
     /// <summary>
-    /// Base class for creating a Pool pattern.
+    /// Class for creating a Random Pool.
     /// </summary>
     public class RandomPool : MonoBehaviour
     {
         #region Variables
         [Header("COMPONENTS")]
-        [Tooltip("The object that will be in the pool.")]
+        [Tooltip("The objects that will be in the pools.")]
         [SerializeField] GameObject[] prefabs;
-        [Tooltip("Object use to return null and prevent null exception.")]
-        [SerializeField] GameObject nullObject;
         [Tooltip("The object where the pool will be created.")]
         [SerializeField] Transform poolContainer;
         [Space]
@@ -27,53 +25,72 @@ namespace PoolTC
         [SerializeField] [Range(1, 1000)] int defaultPoolSize = 1;
         [SerializeField] [Range(1, 1000)] int maxPoolSize = 10;
 
-        List<GameObject> pool = new List<GameObject>();
+        List<List<GameObject>> pools = new List<List<GameObject>>();
         #endregion
 
         private void Awake()
         {
-            // Instantiate and fill the pool
-            pool = new List<GameObject>(defaultPoolSize);
+            // Instantiate and fill the pools
+            for (int i = 0; i < prefabs.Length; i++)
+            {
+                pools.Add(new List<GameObject>(defaultPoolSize));
+                Debug.Log(i);
+            }
 
             for (int i = 0; i < defaultPoolSize; i++)
             {
-                int randomPrefabIndex = Random.Range(0, prefabs.Length);
-                GameObject currentPrefab = Instantiate(prefabs[randomPrefabIndex], poolContainer);
-                currentPrefab.SetActive(false);
-                pool.Add(currentPrefab);
+                for (int j = 0; j < pools.Count; j++)
+                {
+                    GameObject currentPrefab = Instantiate(prefabs[j], poolContainer);
+                    currentPrefab.SetActive(false);
+                    pools[j].Add(currentPrefab);
+                }
             }
         }
 
         /// <summary>
-        /// Find and return the first inactive game object in the pool.
+        /// Find and return the first inactive game object in the a random pool.
         /// If none is available, returns a null object, or a new game object added to the pool 
         /// depending on the type of pool it is.
         /// </summary>
         /// <returns>An inactive game object or a null game object.</returns>
         public GameObject Request()
         {
-            for (int i = 0; i < pool.Count; i++)
+            int randomIndex = Random.Range(0, pools.Count);
+            
+            for (int i = 0; i < pools[randomIndex].Count; i++)
             {
-                if (!pool[i].activeInHierarchy)
-                    return pool[i];
+                if (!pools[randomIndex][i].activeInHierarchy)
+                    return pools[randomIndex][i];
             }
 
             if (fixedSize)
             {
                 Debug.LogError("ERROR : The pool is full and has a fixed size.");
-                return nullObject;
+                return new GameObject("Null Object");
             }
-            else if (pool.Count == maxPoolSize)
+            else if (pools[randomIndex].Count == maxPoolSize)
             {
                 Debug.LogError("ERROR : You have reach the maximum size of the pool.");
-                return nullObject;
+                return new GameObject("Null Object");
             }
             else
             {
-                int randomPrefabIndex = Random.Range(0, prefabs.Length);
-                GameObject newPrefab = Instantiate(prefabs[randomPrefabIndex], poolContainer);
-                pool.Add(newPrefab);
+                GameObject newPrefab = Instantiate(prefabs[randomIndex], poolContainer);
+                pools[randomIndex].Add(newPrefab);
                 return newPrefab;
+            }
+        }
+
+        /// <summary>
+        /// Reset the pool to its default state.
+        /// </summary>
+        public void ResetPool()
+        {
+            foreach (List<GameObject> pool in pools)
+            {
+                foreach (GameObject obj in pool)
+                    obj.SetActive(false);
             }
         }
     }

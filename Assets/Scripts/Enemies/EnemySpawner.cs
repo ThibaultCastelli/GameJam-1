@@ -17,7 +17,10 @@ public class EnemySpawner : MonoBehaviour
     {
         pool = GetComponent<RandomPool>();
         currSpawnRate = defaultSpawnRate;
+    }
 
+    private void Start()
+    {
         StartCoroutine(Spawn());
     }
 

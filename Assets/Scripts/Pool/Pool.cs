@@ -13,8 +13,6 @@ namespace PoolTC
         [Header("COMPONENTS")]
         [Tooltip("The object that will be in the pool.")]
         [SerializeField] GameObject prefab;
-        [Tooltip("Object use to return null and prevent null exception.")]
-        [SerializeField] GameObject nullObject;
         [Tooltip("The object where the pool will be created.")]
         [SerializeField] Transform poolContainer;
         [Space]
@@ -27,7 +25,7 @@ namespace PoolTC
         [SerializeField] [Range(1, 1000)] int defaultPoolSize = 1;
         [SerializeField] [Range(1, 1000)] int maxPoolSize = 10;
         
-        List<GameObject> pool;
+        List<GameObject> pool = new List<GameObject>();
         #endregion
 
         private void Awake()
@@ -60,12 +58,12 @@ namespace PoolTC
             if (fixedSize)
             {
                 Debug.LogError("ERROR : The pool is full and has a fixed size.");
-                return nullObject;
+                return new GameObject("Null Object");
             }
             else if (pool.Count == maxPoolSize)
             {
                 Debug.LogError("ERROR : You have reach the maximum size of the pool.");
-                return nullObject;
+                return new GameObject("Null Object");
             }
             else
             {
