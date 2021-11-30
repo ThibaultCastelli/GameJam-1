@@ -123,6 +123,60 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &90682069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 90682070}
+  - component: {fileID: 90682071}
+  m_Layer: 0
+  m_Name: Backgrounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &90682070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90682069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1632533008}
+  - {fileID: 1109955677}
+  - {fileID: 168408802}
+  - {fileID: 125776297}
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &90682071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90682069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c0bd84a2d77e24eaf3dbf08bf7f0b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgrounds:
+  - {fileID: 1632533007}
+  - {fileID: 1109955676}
+  - {fileID: 168408801}
+  speedBackground1: 7.51
+  speedBackground2: 5.18
+  speedBackground3: 2.79
 --- !u!1 &125776296
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +187,6 @@ GameObject:
   m_Component:
   - component: {fileID: 125776297}
   - component: {fileID: 125776298}
-  - component: {fileID: 125776299}
   m_Layer: 0
   m_Name: BACKGROUND-ONLY
   m_TagString: Untagged
@@ -152,7 +205,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
-  m_Father: {fileID: 519420032}
+  m_Father: {fileID: 90682070}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &125776298
@@ -206,25 +259,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &125776299
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125776296}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6effb01076c124099a4431be1881b55e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &140075926
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +341,6 @@ GameObject:
   m_Component:
   - component: {fileID: 168408802}
   - component: {fileID: 168408803}
-  - component: {fileID: 168408804}
   m_Layer: 0
   m_Name: BACKGROUND-STARS
   m_TagString: Untagged
@@ -326,7 +359,7 @@ Transform:
   m_LocalPosition: {x: 28.79, y: -0.039999984, z: 10}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
-  m_Father: {fileID: 519420032}
+  m_Father: {fileID: 90682070}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &168408803
@@ -380,25 +413,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &168408804
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168408801}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 660e01941576d42cbb2f4d3bbfc1ffaf, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &329296442
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +501,6 @@ MonoBehaviour:
   prefabs:
   - {fileID: 1653153690342773277, guid: 245c5044172b42543b36a0663f7b8ca6, type: 3}
   - {fileID: 2804442059804106428, guid: 7c2842d5e354dca4c8ce85482bc7a105, type: 3}
-  nullObject: {fileID: 5169438616955268675, guid: f37b32dd2b78c1b4dab7e5480bbb6e8d, type: 3}
   poolContainer: {fileID: 387118005}
   fixedSize: 0
   defaultPoolSize: 5
@@ -659,10 +672,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1632533008}
-  - {fileID: 1109955677}
-  - {fileID: 168408802}
-  - {fileID: 125776297}
+  - {fileID: 90682070}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -899,7 +909,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3135414655633589691, guid: 21e4265112dc047448c7afce07378194, type: 3}
-  nullObject: {fileID: 5169438616955268675, guid: f37b32dd2b78c1b4dab7e5480bbb6e8d, type: 3}
   poolContainer: {fileID: 950479597}
   fixedSize: 0
   defaultPoolSize: 10
@@ -940,7 +949,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1109955677}
   - component: {fileID: 1109955678}
-  - component: {fileID: 1109955679}
   m_Layer: 0
   m_Name: STARS-FLASHING
   m_TagString: Untagged
@@ -959,7 +967,7 @@ Transform:
   m_LocalPosition: {x: 28.79, y: -0.04, z: 10}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
-  m_Father: {fileID: 519420032}
+  m_Father: {fileID: 90682070}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1109955678
@@ -1013,25 +1021,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1109955679
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109955676}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c5ef0fe3ea464be4a398356c582dd38, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1184778917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,7 +1165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1632533008}
   - component: {fileID: 1632533009}
-  - component: {fileID: 1632533010}
   m_Layer: 0
   m_Name: BIG-Y-STARS
   m_TagString: Untagged
@@ -1195,7 +1183,7 @@ Transform:
   m_LocalPosition: {x: 28.79, y: -0.039999984, z: 10}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
-  m_Father: {fileID: 519420032}
+  m_Father: {fileID: 90682070}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1632533009
@@ -1249,25 +1237,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1632533010
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1632533007}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 47dcc8e30465c4ee38acbe52177e1e71, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1764087803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,7 +1499,6 @@ MonoBehaviour:
   - {fileID: 666542974629848340, guid: fad51ebbfb287fe4399a717368523cca, type: 3}
   - {fileID: 7835631192103047192, guid: 066367024c0a2cd46aa7c6fcc63c5b6c, type: 3}
   - {fileID: 2393283417641544801, guid: 472e76daabf00234ca4dab4171ba6986, type: 3}
-  nullObject: {fileID: 5169438616955268675, guid: f37b32dd2b78c1b4dab7e5480bbb6e8d, type: 3}
   poolContainer: {fileID: 1793576003}
   fixedSize: 0
   defaultPoolSize: 10

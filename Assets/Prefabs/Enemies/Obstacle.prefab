@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d5b87e4229ecd41ab0e12b37e2bbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites: []
   minSpeed: 4
   maxSpeed: 7
   minScale: 0.5

@@ -5,6 +5,8 @@ using ObserverTC;
 
 public class Obstacle : MonoBehaviour, IEnemy
 {
+    [SerializeField] Sprite[] sprites;
+
     [SerializeField] [Range(1f, 10f)] float minSpeed = 1f;
     [SerializeField] [Range(1f, 10f)] float maxSpeed = 10f;
 
@@ -22,7 +24,7 @@ public class Obstacle : MonoBehaviour, IEnemy
 
     private Rigidbody2D rb;
 
-    private SpriteRenderer sprite;
+    private SpriteRenderer spriteRenderer;
     float spriteHeight;
 
     private Camera cam;
@@ -36,18 +38,18 @@ public class Obstacle : MonoBehaviour, IEnemy
 
     private void Awake()
     {
-        GetRandomScale();
-
         rb = GetComponent<Rigidbody2D>();
         speed = Random.Range(minSpeed, maxSpeed);
 
-        sprite = GetComponent<SpriteRenderer>();
-        spriteHeight = sprite.sprite.bounds.size.y / 2;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteHeight = spriteRenderer.sprite.bounds.size.y / 2;
 
         cam = Camera.main;
         camWidth = cam.orthographicSize * cam.aspect * 1.2f;
 
-        rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
+        GetRandomSprite();
+        GetRandomScale();
+        GetRandomRotation();
     }
 
     private void Update()
@@ -82,7 +84,8 @@ public class Obstacle : MonoBehaviour, IEnemy
         float yPos = Random.Range(-cam.orthographicSize + spriteHeight, cam.orthographicSize - spriteHeight);
         transform.position = new Vector2(camWidth, yPos);
         GetRandomScale();
-        rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed);
+        GetRandomRotation();
+        GetRandomSprite();
 
         gameObject.SetActive(true);
     }
@@ -91,5 +94,20 @@ public class Obstacle : MonoBehaviour, IEnemy
     {
         scale = Random.Range(minScale, maxScale);
         transform.localScale = new Vector3(scale, scale);
+    }
+
+    private void GetRandomRotation()
+    {
+        int dir = Random.Range(0, 2) == 0 ? -1 : 1;
+        rotationSpeed = Random.Range(minRotationSpeed, maxRotationSpeed) * dir;
+    }
+
+    private void GetRandomSprite()
+    {
+        if (sprites.Length == 0)
+            return;
+
+        int randomIndex = Random.Range(0, sprites.Length);
+        spriteRenderer.sprite = sprites[randomIndex];
     }
 }

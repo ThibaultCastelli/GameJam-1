@@ -34,7 +34,6 @@ namespace PoolTC
             for (int i = 0; i < prefabs.Length; i++)
             {
                 pools.Add(new List<GameObject>(defaultPoolSize));
-                Debug.Log(i);
             }
 
             for (int i = 0; i < defaultPoolSize; i++)
