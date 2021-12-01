@@ -6,12 +6,14 @@ using ObserverTC;
 
 public class Ranger : MonoBehaviour, IEnemy
 {
+    [Header("INFOS")]
     [SerializeField] [Range(5f, 20f)] float speed = 15f;
     [SerializeField] [Range(0.1f, 2f)] float fireRate = 1f;
     [SerializeField] [Range(1, 3)] int damageOnCollision = 1;
 
     [SerializeField] [Range(0, 100)] int dropRate = 50;
 
+    [Header("EVENTS")]
     [SerializeField] NotifierVector2 dropPowerUpNotifier;
 
     private Pool bulletPool;
@@ -35,7 +37,7 @@ public class Ranger : MonoBehaviour, IEnemy
         bulletPool = GetComponentInChildren<Pool>();
 
         sprite = GetComponent<SpriteRenderer>();
-        spriteHeight = sprite.sprite.bounds.size.y / 2;
+        spriteHeight = sprite.sprite.bounds.size.y / 1.9f;
 
         cam = Camera.main;
         camWidth = cam.orthographicSize * cam.aspect * 1.2f;
@@ -71,7 +73,6 @@ public class Ranger : MonoBehaviour, IEnemy
     public void TakeDamage(int amount)
     {
         bool drop = Random.Range(0, 100) < dropRate ? true : false;
-
         if (drop)
             dropPowerUpNotifier.Notify(transform.position);
 

@@ -5,6 +5,7 @@ using PoolTC;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("INFOS")]
     [SerializeField] [Range(1f, 5f)] float defaultSpawnRate = 1f;
     [SerializeField] [Range(0.1f, 5f)] float minSpawnRate = 0.5f;
     [SerializeField] [Range(0.01f, 1f)] float rateChanger = 0.1f;
@@ -28,10 +29,10 @@ public class EnemySpawner : MonoBehaviour
     {
         while(true)
         {
+            yield return new WaitForSeconds(currSpawnRate);
+
             IEnemy enemy = pool.Request().GetComponent<IEnemy>();
             enemy.Spawn();
-
-            yield return new WaitForSeconds(currSpawnRate);
 
             currSpawnRate = Mathf.Clamp(currSpawnRate - rateChanger, minSpawnRate, defaultSpawnRate);
         }

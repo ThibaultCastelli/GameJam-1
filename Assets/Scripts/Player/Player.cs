@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using PoolTC;
 using CustomVariablesTC;
+using ObserverTC;
 
 public class Player : MonoBehaviour
 {
+    [Header("COMPONENTS")]
     [SerializeField] SpriteRenderer shipSprite;
 
     [SerializeField] GameObject canonUp;
     [SerializeField] GameObject canonDown;
 
+    [Header("INFOS")]
     [SerializeField] [Range(1f, 20f)] float speed = 5f;
     [SerializeField] [Range(0f, 2f)] float accelerationTime = 1f;
 
     [SerializeField] IntReference life;
+
+    [Header("EVENTS")]
+    [SerializeField] NotifierInt camShakeNotifier;
 
     private Rigidbody2D rb;
 
@@ -50,8 +56,10 @@ public class Player : MonoBehaviour
         camHeight = cam.orthographicSize;
         camWidth = camHeight * cam.aspect;
 
-        spriteWidth = shipSprite.sprite.bounds.size.x / 2;
-        spriteHeight = shipSprite.sprite.bounds.size.y / 2;
+        spriteWidth = shipSprite.sprite.bounds.size.x / 1.7f;
+        spriteHeight = shipSprite.sprite.bounds.size.y / 1.7f;
+
+        life.Value = 3;
     }
 
     private void Update()
@@ -69,10 +77,11 @@ public class Player : MonoBehaviour
         if (shield.gameObject.activeInHierarchy)
             return;
 
-        life.Value -= amount;
+        camShakeNotifier.Notify(3);
+
+        life.Value = Mathf.Clamp(life.Value - amount, 0, 3);
 
         // TODO - Handle player's damage
-        Debug.Log("Player's life : " + life.Value);
     }
 
     private void Shoot()

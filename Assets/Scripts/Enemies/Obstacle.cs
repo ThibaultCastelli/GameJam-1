@@ -5,8 +5,10 @@ using ObserverTC;
 
 public class Obstacle : MonoBehaviour, IEnemy
 {
+    [Header("COMPONENTS")]
     [SerializeField] Sprite[] sprites;
 
+    [Header("INFOS")]
     [SerializeField] [Range(1f, 10f)] float minSpeed = 1f;
     [SerializeField] [Range(1f, 10f)] float maxSpeed = 10f;
 
@@ -20,6 +22,7 @@ public class Obstacle : MonoBehaviour, IEnemy
 
     [SerializeField] [Range(0, 100)] int dropRate = 30;
 
+    [Header("EVENTS")]
     [SerializeField] NotifierVector2 dropPowerUpNotifier;
 
     private Rigidbody2D rb;
@@ -42,7 +45,7 @@ public class Obstacle : MonoBehaviour, IEnemy
         speed = Random.Range(minSpeed, maxSpeed);
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteHeight = spriteRenderer.sprite.bounds.size.y / 2;
+        spriteHeight = spriteRenderer.sprite.bounds.size.y / 1.9f;
 
         cam = Camera.main;
         camWidth = cam.orthographicSize * cam.aspect * 1.2f;
@@ -72,7 +75,6 @@ public class Obstacle : MonoBehaviour, IEnemy
     public void TakeDamage(int amount)
     {
         bool drop = Random.Range(0, 100) < dropRate ? true : false;
-
         if (drop)
             dropPowerUpNotifier.Notify(transform.position);
 

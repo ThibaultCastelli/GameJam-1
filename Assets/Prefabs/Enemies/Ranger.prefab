@@ -103,6 +103,7 @@ MonoBehaviour:
   damageOnCollision: 1
   dropRate: 40
   dropPowerUpNotifier: {fileID: 11400000, guid: 82b1e4f18d732ec4997f2e79d80e826a, type: 2}
+  camShakeNotifier: {fileID: 11400000, guid: 06b03860aa6da594d8478d3c9053a4cd, type: 2}
 --- !u!61 &-230367680503149757
 BoxCollider2D:
   m_ObjectHideFlags: 0

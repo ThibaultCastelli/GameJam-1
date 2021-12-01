@@ -1,10 +1,15 @@
+using ObserverTC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+    [Header("INFOS")]
     [SerializeField] [Range(0.5f, 5f)] float duration = 2f;
+
+    [Header("EVENTS")]
+    [SerializeField] NotifierInt camShakeNotifier;
 
     private void OnEnable()
     {
@@ -18,6 +23,7 @@ public class Shield : MonoBehaviour
         if (collision.TryGetComponent<IEnemy>(out enemy))
         {
             enemy.TakeDamage(3);
+            camShakeNotifier.Notify(2);
         }
     }
 

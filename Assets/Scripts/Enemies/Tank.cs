@@ -5,6 +5,7 @@ using ObserverTC;
 
 public class Tank : MonoBehaviour, IEnemy
 {
+    [Header("INFOS")]
     [SerializeField] [Range(1, 5)] int life = 2;
     [SerializeField] [Range(1, 3)] int damageOnCollision = 3;
 
@@ -12,7 +13,9 @@ public class Tank : MonoBehaviour, IEnemy
 
     [SerializeField] [Range(0, 100)] int dropRate = 80;
 
+    [Header("EVENTS")]
     [SerializeField] NotifierVector2 dropPowerUpNotifier;
+    [SerializeField] NotifierInt camShakeNotifier;
 
     private Rigidbody2D rb;
 
@@ -31,7 +34,7 @@ public class Tank : MonoBehaviour, IEnemy
         rb = GetComponent<Rigidbody2D>();
 
         sprite = GetComponent<SpriteRenderer>();
-        spriteHeight = sprite.sprite.bounds.size.y / 2;
+        spriteHeight = sprite.sprite.bounds.size.y / 1.9f;
 
         cam = Camera.main;
         camWidth = cam.orthographicSize * cam.aspect * 1.2f;
@@ -72,7 +75,6 @@ public class Tank : MonoBehaviour, IEnemy
         if (currLife <= 0)
         {
             bool drop = Random.Range(0, 100) < dropRate ? true : false;
-
             if (drop)
                 dropPowerUpNotifier.Notify(transform.position);
 
