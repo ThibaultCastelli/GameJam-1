@@ -58,13 +58,8 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-<<<<<<< HEAD:Assets/KEVIN/VAISSEAU ANIM/SHIP v2-REACTEUR ANIM_0.controller
-    m_State: {fileID: -5925859154965170177}
-    m_Position: {x: 300, y: 110, z: 0}
-=======
     m_State: {fileID: -7015536209546900898}
     m_Position: {x: 270, y: 30, z: 0}
->>>>>>> 741bb9e188f2eb1a0d3745f243807098a28e1a8f:Assets/KEVIN/PLAYER/SHIP v2-REACTEUR ANIM_0.controller
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

@@ -6,6 +6,8 @@ using CustomVariablesTC;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer shipSprite;
+
     [SerializeField] GameObject canonUp;
     [SerializeField] GameObject canonDown;
 
@@ -23,7 +25,6 @@ public class Player : MonoBehaviour
     private float camHeight;
     private float camWidth;
 
-    private SpriteRenderer sprite;
     private float spriteWidth;
     private float spriteHeight;
 
@@ -49,9 +50,8 @@ public class Player : MonoBehaviour
         camHeight = cam.orthographicSize;
         camWidth = camHeight * cam.aspect;
 
-        sprite = GetComponentInChildren<SpriteRenderer>();
-        spriteWidth = sprite.sprite.bounds.size.x / 2;
-        spriteHeight = sprite.sprite.bounds.size.y / 2;
+        spriteWidth = shipSprite.sprite.bounds.size.x / 2;
+        spriteHeight = shipSprite.sprite.bounds.size.y / 2;
     }
 
     private void Update()

@@ -136,3 +136,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnOffset: {x: 1, y: 0}
   speed: 17
+  camShakeNotifier: {fileID: 11400000, guid: 06b03860aa6da594d8478d3c9053a4cd, type: 2}

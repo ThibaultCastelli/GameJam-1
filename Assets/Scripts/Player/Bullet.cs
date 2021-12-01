@@ -1,3 +1,4 @@
+using ObserverTC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] Vector2 spawnOffset;
     [SerializeField] [Range(1f, 20f)] float speed = 5f;
+
+    [SerializeField] NotifierInt camShakeNotifier;
 
     private Rigidbody2D rb;
 
@@ -35,6 +38,7 @@ public class Bullet : MonoBehaviour
         if (collision.TryGetComponent<IEnemy>(out enemy))
         {
             gameObject.SetActive(false);
+            camShakeNotifier.Notify(1);
             enemy.TakeDamage(1);
         }
     }
