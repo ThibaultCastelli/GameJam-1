@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CustomVariablesTC
@@ -9,6 +10,8 @@ namespace CustomVariablesTC
         [SerializeField] int constant;
         [SerializeField] IntVariable reference;
 
+        public Action OnValueChange;
+
         public int Value
         {
             get { return useConstant ? constant : reference.value; }
@@ -18,6 +21,9 @@ namespace CustomVariablesTC
                     constant = value;
                 else
                     reference.value = value;
+
+                OnValueChange?.Invoke();
+                Debug.Log(OnValueChange);
             }
         }
     }
