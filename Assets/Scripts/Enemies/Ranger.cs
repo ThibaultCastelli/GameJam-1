@@ -9,12 +9,15 @@ public class Ranger : MonoBehaviour, IEnemy
     [Header("INFOS")]
     [SerializeField] [Range(5f, 20f)] float speed = 15f;
     [SerializeField] [Range(0.1f, 2f)] float fireRate = 1f;
+
     [SerializeField] [Range(1, 3)] int damageOnCollision = 1;
 
     [SerializeField] [Range(0, 100)] int dropRate = 50;
+    [SerializeField] [Range(0, 1000)] int scoreOnDeath = 300;
 
     [Header("EVENTS")]
     [SerializeField] NotifierVector2 dropPowerUpNotifier;
+    [SerializeField] NotifierInt enemyDeathNotifier;
 
     private Pool bulletPool;
 
@@ -48,8 +51,10 @@ public class Ranger : MonoBehaviour, IEnemy
     private void Update()
     {
         if (transform.position.x < -camWidth)
-            TakeDamage(1);
+            Despawn();
     }
+
+    
 
     private void FixedUpdate()
     {
@@ -70,15 +75,21 @@ public class Ranger : MonoBehaviour, IEnemy
         StartCoroutine(shootCoroutine);
     }
 
+    private void Despawn()
+    {
+        StopCoroutine(shootCoroutine);
+        bulletPool.ResetPool();
+        gameObject.SetActive(false);
+    }
+
     public void TakeDamage(int amount)
     {
         bool drop = Random.Range(0, 100) < dropRate ? true : false;
         if (drop)
             dropPowerUpNotifier.Notify(transform.position);
 
-        StopCoroutine(shootCoroutine);
-        bulletPool.ResetPool();
-        gameObject.SetActive(false);
+        enemyDeathNotifier.Notify(scoreOnDeath);
+        Despawn();
     }
 
     private IEnumerator Shoot()

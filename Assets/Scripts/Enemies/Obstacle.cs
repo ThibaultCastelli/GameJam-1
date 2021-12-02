@@ -21,9 +21,11 @@ public class Obstacle : MonoBehaviour, IEnemy
     [SerializeField] [Range(1, 3)] int damageOnCollision = 1;
 
     [SerializeField] [Range(0, 100)] int dropRate = 30;
+    [SerializeField] [Range(0, 1000)] int scoreOnDeath = 100;
 
     [Header("EVENTS")]
     [SerializeField] NotifierVector2 dropPowerUpNotifier;
+    [SerializeField] NotifierInt enemyDeathNotifier;
 
     private Rigidbody2D rb;
 
@@ -78,6 +80,7 @@ public class Obstacle : MonoBehaviour, IEnemy
         if (drop)
             dropPowerUpNotifier.Notify(transform.position);
 
+        enemyDeathNotifier.Notify(scoreOnDeath);
         gameObject.SetActive(false);
     }
 

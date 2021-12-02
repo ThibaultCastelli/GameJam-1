@@ -148,5 +148,6 @@ MonoBehaviour:
   damageOnCollision: 3
   speed: 5
   dropRate: 60
+  scoreOnDeath: 500
   dropPowerUpNotifier: {fileID: 11400000, guid: 82b1e4f18d732ec4997f2e79d80e826a, type: 2}
-  camShakeNotifier: {fileID: 11400000, guid: 06b03860aa6da594d8478d3c9053a4cd, type: 2}
+  enemyDeathNotifier: {fileID: 11400000, guid: 0d80fe1a40d710d46b53cbcc60abe0b8, type: 2}

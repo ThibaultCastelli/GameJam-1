@@ -12,10 +12,11 @@ public class Tank : MonoBehaviour, IEnemy
     [SerializeField] [Range(2f, 10f)] float speed = 3f;
 
     [SerializeField] [Range(0, 100)] int dropRate = 80;
+    [SerializeField] [Range(0, 1000)] int scoreOnDeath = 500;
 
     [Header("EVENTS")]
     [SerializeField] NotifierVector2 dropPowerUpNotifier;
-    [SerializeField] NotifierInt camShakeNotifier;
+    [SerializeField] NotifierInt enemyDeathNotifier;
 
     private Rigidbody2D rb;
 
@@ -45,7 +46,7 @@ public class Tank : MonoBehaviour, IEnemy
     private void Update()
     {
         if (transform.position.x < -camWidth)
-            TakeDamage(1);
+            gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -78,6 +79,7 @@ public class Tank : MonoBehaviour, IEnemy
             if (drop)
                 dropPowerUpNotifier.Notify(transform.position);
 
+            enemyDeathNotifier.Notify(scoreOnDeath);
             gameObject.SetActive(false);
         }
     }
