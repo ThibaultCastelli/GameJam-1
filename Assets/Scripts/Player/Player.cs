@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     [Header("EVENTS")]
     [SerializeField] NotifierInt camShakeNotifier;
+    [SerializeField] Notifier playerDeathNotifier;
 
     private Rigidbody2D rb;
 
@@ -79,9 +80,13 @@ public class Player : MonoBehaviour
 
         camShakeNotifier.Notify(3);
 
-        life.Value = Mathf.Clamp(life.Value - amount, 0, 3);
+        life.Value -= amount;
 
-        // TODO - Handle player's damage
+        if (life.Value <= 0)
+        {
+            playerDeathNotifier.Notify();
+            gameObject.SetActive(false);
+        }
     }
 
     private void Shoot()
