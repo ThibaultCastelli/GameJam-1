@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3679d3c3f2ba8e408e2ffe8ebd87384, type: 3}
+  m_Name: Game Music
+  m_EditorClassIdentifier: 
+  description: Musique
+  musicLayers:
+  - {fileID: 8300000, guid: e2a9054f7f597994399b59bc1ab56cf2, type: 3}
+  - {fileID: 8300000, guid: e7715b97d40c1cb41a3a2f13b2db8dfb, type: 3}
+  - {fileID: 8300000, guid: 1b67c88264efedf42b70921993a828a3, type: 3}
+  - {fileID: 8300000, guid: 6f4f0ac8171fd4e48b2b8d7f643d5d57, type: 3}
+  - {fileID: 8300000, guid: a9babf97e6eae6b44845c2f3aa27e462, type: 3}
+  - {fileID: 8300000, guid: fa8d65173677030498d6ed57db545b6b, type: 3}
+  mixerGroup: {fileID: 0}
+  loop: 1
+  stopOnSceneChange: 0
+  defaultVolume: 1
+  layerType: 1
+  currentLayer: 5
