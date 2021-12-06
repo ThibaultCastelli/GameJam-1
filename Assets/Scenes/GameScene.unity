@@ -2429,7 +2429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldSFX: {fileID: 11400000, guid: 844f034c206a8de4390d62350c531d1d, type: 2}
-  duration: 2
+  duration: 5
   camShakeNotifier: {fileID: 11400000, guid: 06b03860aa6da594d8478d3c9053a4cd, type: 2}
 --- !u!58 &1776890401
 CircleCollider2D:
