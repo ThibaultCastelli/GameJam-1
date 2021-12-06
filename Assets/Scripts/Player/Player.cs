@@ -4,12 +4,12 @@ using UnityEngine;
 using PoolTC;
 using CustomVariablesTC;
 using ObserverTC;
+using SFXTC;
 
 public class Player : MonoBehaviour
 {
     [Header("COMPONENTS")]
     [SerializeField] SpriteRenderer shipSprite;
-
     [SerializeField] GameObject canonUp;
     [SerializeField] GameObject canonDown;
 
@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     [Header("EVENTS")]
     [SerializeField] NotifierInt camShakeNotifier;
     [SerializeField] Notifier playerDeathNotifier;
+
+    [Header("AUDIO")]
+    [SerializeField] SFXEvent shootSFX;
+    [SerializeField] SFXEvent shootUpSFX;
 
     private Rigidbody2D rb;
 
@@ -106,6 +110,12 @@ public class Player : MonoBehaviour
             {
                 Bullet newBulletDown = bulletPool.Request().GetComponent<Bullet>();
                 newBulletDown.Spawn(canonDown.transform.position);
+
+                shootUpSFX.Play();
+            }
+            else
+            {
+                shootSFX.Play();
             }
         }
     }

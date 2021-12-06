@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PoolTC;
+using MusicTC;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -27,14 +28,16 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator Spawn()
     {
-        while(true)
-        {
-            yield return new WaitForSeconds(currSpawnRate);
+        yield return new WaitForSeconds(currSpawnRate);
+        MusicManager.Instance.IncreaseLayer();
 
+        while (true)
+        {
             IEnemy enemy = pool.Request().GetComponent<IEnemy>();
             enemy.Spawn();
 
             currSpawnRate = Mathf.Clamp(currSpawnRate - rateChanger, minSpawnRate, defaultSpawnRate);
+            yield return new WaitForSeconds(currSpawnRate);
         }
     }
 }

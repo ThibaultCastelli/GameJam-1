@@ -13,6 +13,7 @@ public class ShieldPowerUp : MonoBehaviour, IPowerUp
 
     public void PowerUp(Player player)
     {
+        player.Shield.gameObject.SetActive(false);
         player.Shield.gameObject.SetActive(true);
     }
 

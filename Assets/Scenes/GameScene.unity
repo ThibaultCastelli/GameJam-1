@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &43510179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7690198685407315492, guid: 6db4fa061ab1afa4eb4a8ef0f831dced, type: 3}
+  m_PrefabInstance: {fileID: 771874922}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &43510180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43510179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ad1d443d24e394baa8b34352e8fc2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameMusic: {fileID: 11400000, guid: 8b39e9f74e52c0f49a8bb263accd8769, type: 2}
 --- !u!4 &56409255
 Transform:
   m_ObjectHideFlags: 0
@@ -710,6 +728,8 @@ MonoBehaviour:
     reference: {fileID: 11400000, guid: f72dd42edca846f49aa8080a60517850, type: 2}
   camShakeNotifier: {fileID: 11400000, guid: 06b03860aa6da594d8478d3c9053a4cd, type: 2}
   playerDeathNotifier: {fileID: 11400000, guid: 5744e72cecf5dff4181aed9cb91136dd, type: 2}
+  shootSFX: {fileID: 11400000, guid: a169af4f60d4d9a4f944c25ad2decd41, type: 2}
+  shootUpSFX: {fileID: 11400000, guid: 47208af446ec3604485ceba82b111d41, type: 2}
 --- !u!4 &329296444
 Transform:
   m_ObjectHideFlags: 0
@@ -722,7 +742,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1857169480}
-  - {fileID: 1764087804}
   - {fileID: 950479597}
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -1396,6 +1415,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3373424542725127271, guid: 6db4fa061ab1afa4eb4a8ef0f831dced, type: 3}
+      propertyPath: maxLayerCount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5613057858453920363, guid: 6db4fa061ab1afa4eb4a8ef0f831dced, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1581,7 +1604,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 329296444}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &950479598
 MonoBehaviour:
@@ -1996,11 +2019,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394681208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.5460167, y: -12.4852295, z: 22.240664}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1597157745}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1394681210
 MonoBehaviour:
@@ -2148,8 +2171,8 @@ RectTransform:
   - {fileID: 1185414841}
   - {fileID: 214416277}
   - {fileID: 550326114}
-  m_Father: {fileID: 1597157745}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2273,9 +2296,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.5460167, y: 12.4852295, z: -22.240664}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1451048318}
-  - {fileID: 1394681209}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2361,36 +2382,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1764087803
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1764087804}
-  m_Layer: 0
-  m_Name: Player_Audio
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1764087804
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764087803}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 329296444}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1776890398
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,6 +2428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4bd025463cb3b4c9968a67768a1b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldSFX: {fileID: 11400000, guid: 844f034c206a8de4390d62350c531d1d, type: 2}
   duration: 2
   camShakeNotifier: {fileID: 11400000, guid: 06b03860aa6da594d8478d3c9053a4cd, type: 2}
 --- !u!58 &1776890401

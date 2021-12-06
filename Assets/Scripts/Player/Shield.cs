@@ -1,10 +1,14 @@
 using ObserverTC;
+using SFXTC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+    [Header("COMPONENTS")]
+    [SerializeField] SFXEvent shieldSFX;
+
     [Header("INFOS")]
     [SerializeField] [Range(0.5f, 5f)] float duration = 2f;
 
@@ -14,6 +18,13 @@ public class Shield : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(LifeCycle());
+        shieldSFX.Play();
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        shieldSFX.Stop();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
