@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fa8d65173677030498d6ed57db545b6b, type: 3}
   mixerGroup: {fileID: 0}
   loop: 1
-  stopOnSceneChange: 0
+  stopOnSceneChange: 1
   defaultVolume: 1
   layerType: 1
   currentLayer: 5
