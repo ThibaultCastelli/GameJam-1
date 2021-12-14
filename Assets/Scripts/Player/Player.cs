@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     [Header("AUDIO")]
     [SerializeField] SFXEvent shootSFX;
     [SerializeField] SFXEvent shootUpSFX;
+    [SerializeField] SFXEvent damageSFX;
+    [SerializeField] SFXEvent deathSFX;
 
     private Rigidbody2D rb;
 
@@ -88,8 +90,13 @@ public class Player : MonoBehaviour
 
         if (life.Value <= 0)
         {
+            deathSFX.Play();
             playerDeathNotifier.Notify();
             gameObject.SetActive(false);
+        }
+        else
+        {
+            damageSFX.Play();
         }
     }
 

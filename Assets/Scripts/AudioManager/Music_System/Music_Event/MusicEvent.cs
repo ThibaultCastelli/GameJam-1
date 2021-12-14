@@ -36,12 +36,19 @@ namespace MusicTC
         [Header("MUSIC INFOS")]
         [Tooltip("Select if the layers should automatically replay.")]
         [SerializeField] bool loop = true;
+        [Tooltip("Select if you want the music to play on the start of a given scene.")]
+        [SerializeField] bool playOnAwake;
+        [Tooltip("Select the index of the scene to play on awake.")]
+        [SerializeField] int sceneToPlayOnAwake = 0;
         [Tooltip("Select if you want the music to stop when going from one scene to the other.")]
         [SerializeField] bool stopOnSceneChange = false;
         [Tooltip("Select the default volume for each layer.\n0 = mute | 1 = full sound")]
         [SerializeField] [Range(0, 1)] float defaultVolume = 1;
+        [Tooltip("Select the default fade time (in seconds).")]
+        [SerializeField] [Range(0, 20)] float defaultFadeTime = 0;
         [Tooltip("The type of layer blend: \nAdditive : All the layer can be play at the same time.\nSingle : Only one layer can be play at the same time.")]
         [SerializeField] LayerType layerType = LayerType.Additive;
+
 
         /// <summary>
         /// Only used for preview functions.
@@ -79,6 +86,18 @@ namespace MusicTC
         /// Represents the default volume of this MusicEvent.
         /// </summary>
         public float DefaultVolume => defaultVolume;
+
+        /// <summary>
+        /// Indicates if the MusicEvent will play on the start of a given scene.
+        /// </summary>
+        public bool PlayOnAwake => playOnAwake;
+
+        /// <summary>
+        /// Represents the index of the scene to play on awake.
+        /// </summary>
+        public int SceneToPlayOnAwake => sceneToPlayOnAwake;
+
+        public float DefaultFadeTime => defaultFadeTime;
         #endregion
 
         #region Functions

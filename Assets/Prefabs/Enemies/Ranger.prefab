@@ -105,6 +105,7 @@ MonoBehaviour:
   scoreOnDeath: 300
   dropPowerUpNotifier: {fileID: 11400000, guid: 82b1e4f18d732ec4997f2e79d80e826a, type: 2}
   enemyDeathNotifier: {fileID: 11400000, guid: 0d80fe1a40d710d46b53cbcc60abe0b8, type: 2}
+  shootSFX: {fileID: 11400000, guid: 69e5970d0b4da92438635f7fa1cea20a, type: 2}
 --- !u!61 &-230367680503149757
 BoxCollider2D:
   m_ObjectHideFlags: 0

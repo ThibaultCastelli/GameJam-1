@@ -109,6 +109,7 @@ MonoBehaviour:
   scoreOnDeath: 100
   dropPowerUpNotifier: {fileID: 11400000, guid: 82b1e4f18d732ec4997f2e79d80e826a, type: 2}
   enemyDeathNotifier: {fileID: 11400000, guid: 0d80fe1a40d710d46b53cbcc60abe0b8, type: 2}
+  explosionSFX: {fileID: 11400000, guid: eefd8e5b35cd367438e8d39d22e9ca3a, type: 2}
 --- !u!50 &666542974629848351
 Rigidbody2D:
   serializedVersion: 4

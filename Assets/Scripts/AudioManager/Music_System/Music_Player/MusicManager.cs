@@ -22,6 +22,10 @@ namespace MusicTC
         [Tooltip("Check if you want to log any change of state of Musics")]
         [SerializeField] bool useLoggedMusicPlayer;
 
+        [Header("DATA")]
+        [Tooltip("All the music events that can be played on awake.")]
+        [SerializeField] List<MusicEvent> playOnAwakeMusics = new List<MusicEvent>();
+
         MusicEvent _currentMusicEvent;
 
         MusicPlayer _musicPlayerA;
@@ -105,11 +109,11 @@ namespace MusicTC
         private void OnEnable()
         {
             // When changing scene, check if the current MusicEvent should stop or not.
-            SceneManager.sceneLoaded += StopOnSceneLoad;
+            SceneManager.sceneLoaded += CheckSceneLoadInfos;
         }
         private void OnDisable()
         {
-            SceneManager.sceneLoaded -= StopOnSceneLoad;
+            SceneManager.sceneLoaded -= CheckSceneLoadInfos;
         }
         #endregion
 
@@ -252,10 +256,19 @@ namespace MusicTC
         }
 
         // Stop the active MusicEvent when changing scene if needed.
-        void StopOnSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
+        void CheckSceneLoadInfos(Scene scene, LoadSceneMode loadSceneMode)
         {
             if (_currentMusicEvent != null && _currentMusicEvent.StopOnSceneChange)
                 Stop();
+
+            foreach (MusicEvent music in playOnAwakeMusics)
+            {
+                if (music.PlayOnAwake && music.SceneToPlayOnAwake == SceneManager.GetActiveScene().buildIndex)
+                {
+                    music.Play(music.DefaultFadeTime);
+                    return;
+                }
+            }
         }
         #endregion
     }

@@ -17,7 +17,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3b4e87f9a2eb74f4ca80f19f6d81ed5c, type: 3}
   mixerGroup: {fileID: 0}
   loop: 1
+  playOnAwake: 1
+  sceneToPlayOnAwake: 0
   stopOnSceneChange: 1
   defaultVolume: 1
+  defaultFadeTime: 0
   layerType: 1
   currentLayer: 0

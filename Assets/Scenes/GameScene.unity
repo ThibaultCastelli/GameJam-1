@@ -123,24 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &43510179 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7690198685407315492, guid: 6db4fa061ab1afa4eb4a8ef0f831dced, type: 3}
-  m_PrefabInstance: {fileID: 771874922}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &43510180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43510179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4ad1d443d24e394baa8b34352e8fc2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameMusic: {fileID: 11400000, guid: 8b39e9f74e52c0f49a8bb263accd8769, type: 2}
 --- !u!4 &56409255
 Transform:
   m_ObjectHideFlags: 0
@@ -730,6 +712,8 @@ MonoBehaviour:
   playerDeathNotifier: {fileID: 11400000, guid: 5744e72cecf5dff4181aed9cb91136dd, type: 2}
   shootSFX: {fileID: 11400000, guid: a169af4f60d4d9a4f944c25ad2decd41, type: 2}
   shootUpSFX: {fileID: 11400000, guid: 47208af446ec3604485ceba82b111d41, type: 2}
+  damageSFX: {fileID: 11400000, guid: cecba4be5d36de340b6cfd8b9576645c, type: 2}
+  deathSFX: {fileID: 11400000, guid: bf6b0f330a7a6d94595be33cd3e2d654, type: 2}
 --- !u!4 &329296444
 Transform:
   m_ObjectHideFlags: 0

@@ -46,3 +46,6 @@ MonoBehaviour:
   maxLayerCount: 3
   useNullMusicPlayer: 0
   useLoggedMusicPlayer: 0
+  playOnAwakeMusics:
+  - {fileID: 11400000, guid: d12f5bf0e6e3377458eb1af8a90e91eb, type: 2}
+  - {fileID: 11400000, guid: 8b39e9f74e52c0f49a8bb263accd8769, type: 2}

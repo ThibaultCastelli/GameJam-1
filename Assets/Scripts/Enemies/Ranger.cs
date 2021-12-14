@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PoolTC;
 using ObserverTC;
+using SFXTC;
 
 public class Ranger : MonoBehaviour, IEnemy
 {
@@ -18,6 +19,9 @@ public class Ranger : MonoBehaviour, IEnemy
     [Header("EVENTS")]
     [SerializeField] NotifierVector2 dropPowerUpNotifier;
     [SerializeField] NotifierInt enemyDeathNotifier;
+
+    [Header("AUDIO")]
+    [SerializeField] SFXEvent shootSFX;
 
     private Pool bulletPool;
 
@@ -99,6 +103,8 @@ public class Ranger : MonoBehaviour, IEnemy
             yield return new WaitForSeconds(fireRate);
             BulletEnemy newBullet = bulletPool.Request().GetComponent<BulletEnemy>();
             newBullet.Spawn(rb.position);
+
+            shootSFX.Play();
         }
     }
 }
