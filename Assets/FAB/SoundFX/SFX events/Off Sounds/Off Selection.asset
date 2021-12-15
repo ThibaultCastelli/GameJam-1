@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 686efdaea1edf8940b8ea292d675ecbc, type: 3}
-  m_Name: Explosion
+  m_Name: Off Selection
   m_EditorClassIdentifier: 
-  description: 
+  description: "Ex : \nCliquer sur Start, Quit, Restart, Continue etc ..."
   clips:
-  - {fileID: 8300000, guid: b70e06a4528f10c46b3168c89e9970ca, type: 3}
+  - {fileID: 8300000, guid: 6ec66e661470feb49a870b100a7117a1, type: 3}
   mixerGroup: {fileID: 0}
   playOnAwake: 0
   loop: 0
@@ -28,16 +28,16 @@ MonoBehaviour:
   randomVolume:
     minValue: 0
     maxValue: 0
-  useRandomPan: 1
+  useRandomPan: 0
   pan: 0
   randomPan:
-    minValue: -0.55350596
-    maxValue: 0.535055
-  useRandomPitch: 1
+    minValue: 0
+    maxValue: 0
+  useRandomPitch: 0
   pitch: 1
   randomPitch:
-    minValue: 0.90405893
-    maxValue: 1.1328415
+    minValue: 0
+    maxValue: 0
   useRandomReverbZoneMix: 0
   reverbZoneMix: 1
   randomReverbZoneMix:

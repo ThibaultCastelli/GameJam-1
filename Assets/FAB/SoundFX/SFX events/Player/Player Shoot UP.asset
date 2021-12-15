@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 686efdaea1edf8940b8ea292d675ecbc, type: 3}
-  m_Name: Shoot
+  m_Name: Player Shoot UP
   m_EditorClassIdentifier: 
   description: 
   clips:
-  - {fileID: 8300000, guid: 6147c19fe3de3084887bbd86bdff4d45, type: 3}
+  - {fileID: 8300000, guid: 15c03df5db305f646a6ddb6761c51c8c, type: 3}
   mixerGroup: {fileID: 0}
   playOnAwake: 0
   loop: 0
@@ -34,10 +34,10 @@ MonoBehaviour:
     minValue: 0
     maxValue: 0
   useRandomPitch: 0
-  pitch: 1
+  pitch: 0.56
   randomPitch:
-    minValue: 0.94331026
-    maxValue: 1.0929697
+    minValue: 0
+    maxValue: 0
   useRandomReverbZoneMix: 0
   reverbZoneMix: 1
   randomReverbZoneMix:
