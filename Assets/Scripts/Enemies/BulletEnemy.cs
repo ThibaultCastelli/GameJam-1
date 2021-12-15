@@ -30,12 +30,12 @@ public class BulletEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerPhysx player;
+        Player player;
 
-        if (collision.TryGetComponent<PlayerPhysx>(out player))
+        if (collision.TryGetComponent<Player>(out player))
         {
             gameObject.SetActive(false);
-            player.player.TakeDamage(1);
+            player.TakeDamage(1);
         }
     }
 

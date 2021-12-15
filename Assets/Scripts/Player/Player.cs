@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] SpriteRenderer shipSprite;
     [SerializeField] GameObject canonUp;
     [SerializeField] GameObject canonDown;
+    [SerializeField] GameObject shield;
 
     [Header("INFOS")]
     [SerializeField] [Range(1f, 20f)] float speed = 5f;
@@ -32,7 +33,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
 
     private Pool bulletPool;
-    private Shield shield;
 
     private Camera cam;
     private float camHeight;
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     private float prevVerticalInput = 0;
     private float currAcceleration = 0f;
 
-    public Shield Shield => shield;
+    public GameObject Shield => shield;
     public GameObject CanonUp => canonUp;
     public GameObject CanonDown => canonDown;
 
@@ -55,9 +55,6 @@ public class Player : MonoBehaviour
     {
         rb = GetComponentInChildren<Rigidbody2D>();
         bulletPool = GetComponentInChildren<Pool>();
-
-        shield = GetComponentInChildren<Shield>();
-        shield.gameObject.SetActive(false);
 
         cam = Camera.main;
         camHeight = cam.orthographicSize;
@@ -77,6 +74,24 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IEnemy enemy;
+        IPowerUp powerUp;
+
+        if (collision.TryGetComponent<IEnemy>(out enemy))
+        {
+            TakeDamage(enemy.Damage);
+            enemy.TakeDamage(1);
+        }
+
+        else if (collision.TryGetComponent<IPowerUp>(out powerUp))
+        {
+            powerUp.PowerUp(this);
+            collision.gameObject.SetActive(false);
+        }
     }
 
     public void TakeDamage(int amount)

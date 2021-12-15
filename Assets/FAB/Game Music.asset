@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6f4f0ac8171fd4e48b2b8d7f643d5d57, type: 3}
   - {fileID: 8300000, guid: a9babf97e6eae6b44845c2f3aa27e462, type: 3}
   - {fileID: 8300000, guid: fa8d65173677030498d6ed57db545b6b, type: 3}
-  mixerGroup: {fileID: 0}
+  mixerGroup: {fileID: 381671706539134021, guid: 2ad70070a65bf8d4ab3f6afa8185547d, type: 2}
   loop: 1
   playOnAwake: 1
   sceneToPlayOnAwake: 1
