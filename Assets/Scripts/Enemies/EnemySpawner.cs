@@ -40,4 +40,10 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(currSpawnRate);
         }
     }
+
+    public void StopSpawner()
+    {
+        pool.ResetPool();
+        StopAllCoroutines();
+    }
 }

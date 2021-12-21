@@ -748,16 +748,17 @@ MonoBehaviour:
   canonUp: {fileID: 908556082}
   canonDown: {fileID: 866069581}
   shield: {fileID: 1776890398}
-  speed: 10
-  accelerationTime: 0.1
+  speed: 8
+  accelerationTime: 0.05
   life:
     useConstant: 0
     constant: 3
     reference: {fileID: 11400000, guid: f72dd42edca846f49aa8080a60517850, type: 2}
+  timeToDie: 1
   camShakeNotifier: {fileID: 11400000, guid: 06b03860aa6da594d8478d3c9053a4cd, type: 2}
   playerDeathNotifier: {fileID: 11400000, guid: 5744e72cecf5dff4181aed9cb91136dd, type: 2}
   shootSFX: {fileID: 11400000, guid: a169af4f60d4d9a4f944c25ad2decd41, type: 2}
-  shootUpSFX: {fileID: 0}
+  shootUpSFX: {fileID: 11400000, guid: 742b8564ad2604e479f6cfed524842d6, type: 2}
   damageSFX: {fileID: 11400000, guid: cecba4be5d36de340b6cfd8b9576645c, type: 2}
   deathSFX: {fileID: 11400000, guid: bf6b0f330a7a6d94595be33cd3e2d654, type: 2}
 --- !u!4 &329296444
@@ -822,7 +823,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.47, y: 1.5921705}
+  m_Size: {x: 0.9, y: 0.87}
   m_EdgeRadius: 0
 --- !u!95 &329296447
 Animator:
@@ -2707,6 +2708,7 @@ GameObject:
   - component: {fileID: 1793576003}
   - component: {fileID: 1793576001}
   - component: {fileID: 1793576002}
+  - component: {fileID: 1793576004}
   m_Layer: 0
   m_Name: Pool_Enemies
   m_TagString: Untagged
@@ -2744,7 +2746,6 @@ MonoBehaviour:
   prefabs:
   - {fileID: 666542974629848340, guid: fad51ebbfb287fe4399a717368523cca, type: 3}
   - {fileID: 7835631192103047192, guid: 066367024c0a2cd46aa7c6fcc63c5b6c, type: 3}
-  - {fileID: 2393283417641544801, guid: 472e76daabf00234ca4dab4171ba6986, type: 3}
   poolContainer: {fileID: 1793576003}
   fixedSize: 0
   defaultPoolSize: 10
@@ -2764,6 +2765,34 @@ Transform:
   m_Father: {fileID: 2127588528}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1793576004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793576000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ee65cfc8d436e4692749384418b4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notifier: {fileID: 11400000, guid: 5744e72cecf5dff4181aed9cb91136dd, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1793576001}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: StopSpawner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1950002069
 GameObject:
   m_ObjectHideFlags: 0

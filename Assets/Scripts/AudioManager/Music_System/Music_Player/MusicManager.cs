@@ -258,7 +258,7 @@ namespace MusicTC
         // Stop the active MusicEvent when changing scene if needed.
         void CheckSceneLoadInfos(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (_currentMusicEvent != null && _currentMusicEvent.StopOnSceneChange)
+            if (_currentMusicEvent != null && _currentMusicEvent.StopOnSceneChange && ActivePlayer.musicEvent != null)
                 Stop();
 
             foreach (MusicEvent music in playOnAwakeMusics)

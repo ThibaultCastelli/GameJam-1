@@ -1,14 +1,20 @@
 using ObserverTC;
+using SFXTC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [Header("INFOS")]
     [SerializeField] Vector2 spawnOffset;
     [SerializeField] [Range(1f, 20f)] float speed = 5f;
 
+    [Header("EVENTS")]
     [SerializeField] NotifierInt camShakeNotifier;
+
+    [Header("AUDIO")]
+    [SerializeField] SFXEvent explosionSFX;
 
     private Rigidbody2D rb;
 
@@ -34,12 +40,22 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         IEnemy enemy;
+        BulletEnemy bulletEnemy;
 
         if (collision.TryGetComponent<IEnemy>(out enemy))
         {
+            explosionSFX.Play();
+
             gameObject.SetActive(false);
             camShakeNotifier.Notify(1);
             enemy.TakeDamage(1);
+        }
+        else if (collision.TryGetComponent<BulletEnemy>(out bulletEnemy))
+        {
+            explosionSFX.Play();
+
+            gameObject.SetActive(false);
+            bulletEnemy.gameObject.SetActive(false);
         }
     }
 

@@ -9,6 +9,7 @@ public class Ranger : MonoBehaviour, IEnemy
 {
     [Header("INFOS")]
     [SerializeField] [Range(5f, 20f)] float speed = 15f;
+    [SerializeField] [Range(0, 10)] int maxYSpeed = 2;
     [SerializeField] [Range(0.1f, 2f)] float fireRate = 1f;
 
     [SerializeField] [Range(1, 3)] int damageOnCollision = 1;
@@ -35,6 +36,8 @@ public class Ranger : MonoBehaviour, IEnemy
 
     private IEnumerator shootCoroutine;
 
+    private int ySpeed = 0;
+
     public int Damage => damageOnCollision;
 
     private void Awake()
@@ -54,11 +57,10 @@ public class Ranger : MonoBehaviour, IEnemy
 
     private void Update()
     {
-        if (transform.position.x < -camWidth)
+        if (transform.position.x < -camWidth || transform.position.y < -cam.orthographicSize * 1.5f
+            || transform.position.y > cam.orthographicSize * 1.5f)
             Despawn();
     }
-
-    
 
     private void FixedUpdate()
     {
@@ -67,13 +69,16 @@ public class Ranger : MonoBehaviour, IEnemy
 
     public void Move()
     {
-        rb.MovePosition(rb.position + Vector2.left * speed * Time.deltaTime);
+        Vector2 dir = new Vector2(-1 * speed, ySpeed);
+        rb.MovePosition(rb.position + dir * Time.deltaTime);
     }
 
     public void Spawn()
     {
         float yPos = Random.Range(-cam.orthographicSize + spriteHeight, cam.orthographicSize - spriteHeight);
         transform.position = new Vector2(camWidth, yPos);
+
+        ySpeed = Random.Range(-maxYSpeed, maxYSpeed);
 
         gameObject.SetActive(true);
         StartCoroutine(shootCoroutine);

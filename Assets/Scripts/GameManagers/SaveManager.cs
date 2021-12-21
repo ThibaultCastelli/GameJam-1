@@ -35,9 +35,6 @@ public class SaveManager : MonoBehaviour
     {
         currSave.highscore = highscore.Value;
         string json = JsonUtility.ToJson(currSave);
-        File.WriteAllText(fullPath, json);
-
-        // TODO - Do better way of changing scene.
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        File.WriteAllText(fullPath, json);        
     }
 }

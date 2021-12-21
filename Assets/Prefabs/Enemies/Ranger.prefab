@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7835631192103047192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1590185828457851122}
   m_Father: {fileID: 0}
@@ -98,10 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c794b521432564cb0bd420fdf0d54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
+  speed: 8
+  maxYSpeed: 3
   fireRate: 1
   damageOnCollision: 1
-  dropRate: 40
+  dropRate: 20
   scoreOnDeath: 300
   dropPowerUpNotifier: {fileID: 11400000, guid: 82b1e4f18d732ec4997f2e79d80e826a, type: 2}
   enemyDeathNotifier: {fileID: 11400000, guid: 0d80fe1a40d710d46b53cbcc60abe0b8, type: 2}

@@ -5,6 +5,8 @@ using PoolTC;
 using CustomVariablesTC;
 using ObserverTC;
 using SFXTC;
+using MusicTC;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class Player : MonoBehaviour
     [SerializeField] [Range(0f, 2f)] float accelerationTime = 1f;
 
     [SerializeField] IntReference life;
+
+    [SerializeField] [Range(0f, 5f)] float timeToDie = 1f;
 
     [Header("EVENTS")]
     [SerializeField] NotifierInt camShakeNotifier;
@@ -46,6 +50,8 @@ public class Player : MonoBehaviour
     private float verticalInput;
     private float prevVerticalInput = 0;
     private float currAcceleration = 0f;
+
+    private bool canShoot = true;
 
     public GameObject Shield => shield;
     public GameObject CanonUp => canonUp;
@@ -105,9 +111,7 @@ public class Player : MonoBehaviour
 
         if (life.Value <= 0)
         {
-            deathSFX.Play();
-            playerDeathNotifier.Notify();
-            gameObject.SetActive(false);
+            StartCoroutine(Die());
         }
         else
         {
@@ -115,9 +119,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    private IEnumerator Die()
+    {
+        MusicManager.Instance.Stop();
+        deathSFX.Play();
+        playerDeathNotifier.Notify();
+
+        speed = 0;
+        canShoot = false;
+
+        yield return new WaitForSeconds(timeToDie);
+        gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canShoot)
         {
             Bullet newBullet = bulletPool.Request().GetComponent<Bullet>();
             newBullet.Spawn(rb.position);

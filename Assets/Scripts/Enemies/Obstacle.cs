@@ -28,9 +28,6 @@ public class Obstacle : MonoBehaviour, IEnemy
     [SerializeField] NotifierVector2 dropPowerUpNotifier;
     [SerializeField] NotifierInt enemyDeathNotifier;
 
-    [Header("AUDIO")]
-    [SerializeField] SFXEvent explosionSFX;
-
     private Rigidbody2D rb;
 
     private SpriteRenderer spriteRenderer;
@@ -83,8 +80,6 @@ public class Obstacle : MonoBehaviour, IEnemy
         bool drop = Random.Range(0, 100) < dropRate ? true : false;
         if (drop)
             dropPowerUpNotifier.Notify(transform.position);
-
-        explosionSFX.Play();
 
         enemyDeathNotifier.Notify(scoreOnDeath);
         gameObject.SetActive(false);

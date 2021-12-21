@@ -13,6 +13,9 @@ public class BulletPowerUp : MonoBehaviour, IPowerUp
 
     public void PowerUp(Player player)
     {
+        if (player.CanonDown.activeInHierarchy)
+            return;
+
         player.CanonUp.SetActive(false);
         player.CanonDown.SetActive(false);
 
