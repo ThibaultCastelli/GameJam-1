@@ -26,6 +26,9 @@ MonoBehaviour:
   sceneToPlayOnAwake: 1
   stopOnSceneChange: 1
   defaultVolume: 1
-  defaultFadeTime: 0
+  defaultFadeTime: 2
   layerType: 1
+  layersToAutoPass:
+  - {fileID: 8300000, guid: e7715b97d40c1cb41a3a2f13b2db8dfb, type: 3}
+  - {fileID: 8300000, guid: 6f4f0ac8171fd4e48b2b8d7f643d5d57, type: 3}
   currentLayer: 5

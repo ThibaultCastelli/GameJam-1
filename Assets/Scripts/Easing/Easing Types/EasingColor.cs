@@ -20,7 +20,7 @@ namespace EasingTC
 
         protected Color newEndColor;
 
-        new Renderer renderer = null;
+        new SpriteRenderer renderer = null;
         Image image = null;
         #endregion
 
@@ -33,7 +33,7 @@ namespace EasingTC
             animationToPlay = EaseColor;
 
             // Get the renderer or image component
-            if (!TryGetComponent<Renderer>(out renderer))
+            if (!TryGetComponent<SpriteRenderer>(out renderer))
             {
                 if (!TryGetComponent<Image>(out image))
                 {
@@ -44,7 +44,9 @@ namespace EasingTC
                     defaultStartColor = image.color;
             }
             else
-                defaultStartColor = renderer.material.color;
+            {
+                defaultStartColor = renderer.color;
+            }
 
             if (useAnotherStartValue)
                 defaultStartColor = startColor;
@@ -71,9 +73,23 @@ namespace EasingTC
         public override void PlayAnimationInOut()
         {
             newEndColor = newEndColor == endColor ? defaultStartColor : endColor;
-            newStartColor = renderer != null ? renderer.material.color : image.color;
+            newStartColor = renderer != null ? renderer.color : image.color;
 
             base.PlayAnimationInOut();
+        }
+
+        public override void StopAnimation()
+        {
+            base.StopAnimation();
+
+            if (renderer != null)
+            {
+                renderer.color = defaultStartColor;
+            }
+            else if (image != null)
+            {
+                image.color = defaultStartColor;
+            }
         }
 
         /// <summary>
@@ -84,7 +100,7 @@ namespace EasingTC
             while (true)
             {
                 if (renderer != null)
-                    renderer.material.color = Color.Lerp(newStartColor, newEndColor, easeFunc(elapsedTime / duration));
+                    renderer.color = Color.Lerp(newStartColor, newEndColor, easeFunc(elapsedTime / duration));
                 else if (image != null)
                     image.color = Color.Lerp(newStartColor, newEndColor, easeFunc(elapsedTime / duration));
 

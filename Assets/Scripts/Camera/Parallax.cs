@@ -44,4 +44,11 @@ public class Parallax : MonoBehaviour
                 backgrounds[i].transform.position = startPos[i];
         }
     }
+
+    public void StopParallax()
+    {
+        speedBackground1 /= 10;
+        speedBackground2 /= 10;
+        speedBackground3 /= 10;
+    }
 }

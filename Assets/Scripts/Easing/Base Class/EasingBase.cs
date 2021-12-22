@@ -295,6 +295,11 @@ namespace EasingTC
 
             PlayAnimation();
         }
+
+        public virtual void StopAnimation()
+        {
+            StopAllCoroutines();
+        }
         #endregion
 
         #region Easing Types

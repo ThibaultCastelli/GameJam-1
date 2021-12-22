@@ -750,6 +750,7 @@ MonoBehaviour:
   shield: {fileID: 1776890398}
   speed: 8
   accelerationTime: 0.05
+  timeOfInvicibilityAfterDamage: 0.5
   life:
     useConstant: 0
     constant: 3
@@ -761,6 +762,7 @@ MonoBehaviour:
   shootUpSFX: {fileID: 11400000, guid: 742b8564ad2604e479f6cfed524842d6, type: 2}
   damageSFX: {fileID: 11400000, guid: cecba4be5d36de340b6cfd8b9576645c, type: 2}
   deathSFX: {fileID: 11400000, guid: bf6b0f330a7a6d94595be33cd3e2d654, type: 2}
+  flashAnim: {fileID: 1024048560}
 --- !u!4 &329296444
 Transform:
   m_ObjectHideFlags: 0
@@ -856,6 +858,7 @@ GameObject:
   - component: {fileID: 387118004}
   - component: {fileID: 387118006}
   - component: {fileID: 387118007}
+  - component: {fileID: 387118008}
   m_Layer: 0
   m_Name: Pool_PowerUps
   m_TagString: Untagged
@@ -928,6 +931,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PowerUpSpawner, Assembly-CSharp
         m_MethodName: SpawnPowerUp
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &387118008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387118003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ee65cfc8d436e4692749384418b4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notifier: {fileID: 11400000, guid: 5744e72cecf5dff4181aed9cb91136dd, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 387118004}
+        m_TargetAssemblyTypeName: PoolTC.RandomPool, Assembly-CSharp
+        m_MethodName: ResetPool
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1726,6 +1757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 958838572}
   - component: {fileID: 958838571}
+  - component: {fileID: 958838573}
   m_Layer: 0
   m_Name: Backgrounds
   m_TagString: Untagged
@@ -1770,6 +1802,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &958838573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958838570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ee65cfc8d436e4692749384418b4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notifier: {fileID: 11400000, guid: 5744e72cecf5dff4181aed9cb91136dd, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 958838571}
+        m_TargetAssemblyTypeName: Parallax, Assembly-CSharp
+        m_MethodName: StopParallax
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1024048556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,6 +1841,7 @@ GameObject:
   - component: {fileID: 1024048559}
   - component: {fileID: 1024048557}
   - component: {fileID: 1024048558}
+  - component: {fileID: 1024048560}
   m_Layer: 0
   m_Name: Player_Idle_0
   m_TagString: Untagged
@@ -1872,6 +1933,32 @@ Transform:
   m_Father: {fileID: 329296444}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1024048560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024048556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ace5897083feda4ebdeef4f77ae6a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationType: 0
+  easeInType: 0
+  easeOutType: 0
+  easeInOutType: 0
+  mirorType: 0
+  specialEaseType: 0
+  playOnAwake: 0
+  loop: 1
+  loopType: 1
+  duration: 0.1
+  followEndValue: 0
+  useAnotherStartValue: 0
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &1109955676
 GameObject:
   m_ObjectHideFlags: 0

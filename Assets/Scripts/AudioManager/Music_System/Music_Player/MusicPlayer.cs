@@ -17,6 +17,8 @@ namespace MusicTC
 
         // List of the audio sources for each layer of the MusicEvent
         List<AudioSource> audioSources = new List<AudioSource>();
+
+        public List<AudioSource> AudioSources => audioSources;
         #endregion
 
         #region Initialization
@@ -185,6 +187,14 @@ namespace MusicTC
                 startVolumes[i] = audioSources[i].volume;
 
             return startVolumes;
+        }
+
+        public void SetLoop(bool loop)
+        {
+            foreach (AudioSource audioSource in audioSources)
+            {
+                audioSource.loop = loop;
+            }
         }
         #endregion
 

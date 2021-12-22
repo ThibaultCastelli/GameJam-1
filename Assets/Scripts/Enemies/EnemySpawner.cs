@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(currSpawnRate);
-        MusicManager.Instance.IncreaseLayer();
+        MusicManager.Instance.IncreaseLayer(0);
 
         while (true)
         {

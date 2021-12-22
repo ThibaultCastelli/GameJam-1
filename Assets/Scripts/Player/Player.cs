@@ -7,6 +7,7 @@ using ObserverTC;
 using SFXTC;
 using MusicTC;
 using UnityEngine.SceneManagement;
+using EasingTC;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     [Header("INFOS")]
     [SerializeField] [Range(1f, 20f)] float speed = 5f;
     [SerializeField] [Range(0f, 2f)] float accelerationTime = 1f;
+    [SerializeField] [Range(0f, 2f)] float timeOfInvicibilityAfterDamage = 0.5f;
 
     [SerializeField] IntReference life;
 
@@ -33,6 +35,9 @@ public class Player : MonoBehaviour
     [SerializeField] SFXEvent shootUpSFX;
     [SerializeField] SFXEvent damageSFX;
     [SerializeField] SFXEvent deathSFX;
+
+    [Header("ANIM")]
+    [SerializeField] EasingColor flashAnim;
 
     private Rigidbody2D rb;
 
@@ -52,6 +57,7 @@ public class Player : MonoBehaviour
     private float currAcceleration = 0f;
 
     private bool canShoot = true;
+    private bool canTakeDamage = true;
 
     public GameObject Shield => shield;
     public GameObject CanonUp => canonUp;
@@ -102,7 +108,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        if (shield.gameObject.activeInHierarchy)
+        if (shield.gameObject.activeInHierarchy || !canTakeDamage)
             return;
 
         camShakeNotifier.Notify(3);
@@ -116,12 +122,29 @@ public class Player : MonoBehaviour
         else
         {
             damageSFX.Play();
+
+            if (MusicManager.Instance.CurrentLayer == 1 || MusicManager.Instance.CurrentLayer == 3)
+                MusicManager.Instance.IncreaseLayer();
+            MusicManager.Instance.IncreaseLayer();
+
+            canTakeDamage = false;
+            canShoot = false;
+            flashAnim.PlayAnimationInOut();
+            StartCoroutine(InvicibleAfterTakingDamage());
         }
+    }
+
+    private IEnumerator InvicibleAfterTakingDamage()
+    {
+        yield return new WaitForSeconds(timeOfInvicibilityAfterDamage);
+        canTakeDamage = true;
+        canShoot = true;
+        flashAnim.StopAnimation();
     }
 
     private IEnumerator Die()
     {
-        MusicManager.Instance.Stop();
+        MusicManager.Instance.Stop(0);
         deathSFX.Play();
         playerDeathNotifier.Notify();
 

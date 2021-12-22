@@ -9,7 +9,6 @@ public class Ranger : MonoBehaviour, IEnemy
 {
     [Header("INFOS")]
     [SerializeField] [Range(5f, 20f)] float speed = 15f;
-    [SerializeField] [Range(0, 10)] int maxYSpeed = 2;
     [SerializeField] [Range(0.1f, 2f)] float fireRate = 1f;
 
     [SerializeField] [Range(1, 3)] int damageOnCollision = 1;
@@ -36,7 +35,8 @@ public class Ranger : MonoBehaviour, IEnemy
 
     private IEnumerator shootCoroutine;
 
-    private int ySpeed = 0;
+    private float yEndPos;
+    private float xEndPos;
 
     public int Damage => damageOnCollision;
 
@@ -52,13 +52,14 @@ public class Ranger : MonoBehaviour, IEnemy
         cam = Camera.main;
         camWidth = cam.orthographicSize * cam.aspect * 1.2f;
 
+        xEndPos = -camWidth;
+
         shootCoroutine = Shoot();
     }
 
     private void Update()
     {
-        if (transform.position.x < -camWidth || transform.position.y < -cam.orthographicSize * 1.5f
-            || transform.position.y > cam.orthographicSize * 1.5f)
+        if (transform.position.x <= -camWidth)
             Despawn();
     }
 
@@ -69,16 +70,16 @@ public class Ranger : MonoBehaviour, IEnemy
 
     public void Move()
     {
-        Vector2 dir = new Vector2(-1 * speed, ySpeed);
-        rb.MovePosition(rb.position + dir * Time.deltaTime);
+        Vector2 dir = Vector2.MoveTowards(transform.position, new Vector2(xEndPos, yEndPos), Time.deltaTime * speed);
+        rb.MovePosition(dir);
     }
 
     public void Spawn()
     {
         float yPos = Random.Range(-cam.orthographicSize + spriteHeight, cam.orthographicSize - spriteHeight);
-        transform.position = new Vector2(camWidth, yPos);
+        yEndPos = Random.Range(-cam.orthographicSize + spriteHeight, cam.orthographicSize - spriteHeight);
 
-        ySpeed = Random.Range(-maxYSpeed, maxYSpeed);
+        transform.position = new Vector2(camWidth, yPos);
 
         gameObject.SetActive(true);
         StartCoroutine(shootCoroutine);

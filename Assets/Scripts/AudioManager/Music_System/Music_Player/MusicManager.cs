@@ -34,6 +34,8 @@ namespace MusicTC
         bool _isPlayingA = true;    // Used to check wich MusicPlayer is currently active.
 
         int _currentLayer;          // Used to track which layer is active on the MusicEvent currently playing.
+
+        private bool isCurrentLayerAutoPass = false;
         #endregion
 
         #region Properties
@@ -115,6 +117,18 @@ namespace MusicTC
         {
             SceneManager.sceneLoaded -= CheckSceneLoadInfos;
         }
+
+        private void Update()
+        {
+            if (_currentMusicEvent == null || !isCurrentLayerAutoPass)
+                return;
+
+            if (!ActivePlayer.AudioSources[_currentLayer].isPlaying)
+            {
+                IncreaseLayer(_currentMusicEvent.DefaultFadeTime);
+                Replay(0);
+            }
+        }
         #endregion
 
         #region Functions
@@ -123,7 +137,7 @@ namespace MusicTC
         /// </summary>
         /// <param name="musicEvent">The MusicEvent to play.</param>
         /// <param name="fadeTime">How much time the fade in will take (in seconds).</param>
-        public void Play(MusicEvent musicEvent, float fadeTime = 0)
+        public void Play(MusicEvent musicEvent, float fadeTime = -1)
         {
             // Prevent errors
             if (musicEvent == null)
@@ -136,11 +150,9 @@ namespace MusicTC
                 Debug.LogError("ERROR : This MusicEvent is already playing.");
                 return;
             }
-            else if (fadeTime < 0)
-            {
-                Debug.LogError("ERROR : The fade time can't be negative.");
-                return;
-            }
+            
+            if (fadeTime < 0)
+                fadeTime = _currentMusicEvent.DefaultFadeTime;
 
             // Use different behaviour based on the type of player selected
             if (useLoggedMusicPlayer)
@@ -158,20 +170,33 @@ namespace MusicTC
             // Keep track of the new MusicEvent and play it
             _currentMusicEvent = musicEvent;
             ActivePlayer.Play(musicEvent, fadeTime);
+
+            CheckCurrentLayerAutoPass();
+        }
+
+        private void CheckCurrentLayerAutoPass()
+        {
+            if (_currentMusicEvent.LayersToAutoPass.Contains(_currentMusicEvent.GetCurrentLayer(_currentLayer)))
+            {
+                isCurrentLayerAutoPass = true;
+                ActivePlayer.SetLoop(false);
+            }
+            else
+            {
+                isCurrentLayerAutoPass = false;
+                ActivePlayer.SetLoop(true);
+            }
         }
 
         /// <summary>
         /// Replay a MusicEvent with the given fade in time and at first layer.
         /// </summary>
         /// <param name="fadeTime">How much time the fade in/out will take (in seconds).</param>
-        public void Replay(float fadeTime = 0)
+        public void Replay(float fadeTime = -1)
         {
             // Prevent errors
             if (fadeTime < 0)
-            {
-                Debug.LogError("ERROR : The fade time can't be negative.");
-                return;
-            }
+                fadeTime = _currentMusicEvent.DefaultFadeTime;
 
             // Use different behaviour based on the type of player selected
             if (useLoggedMusicPlayer)
@@ -188,7 +213,7 @@ namespace MusicTC
         /// Stop a MusicEvent with the given fade out time.
         /// </summary>
         /// <param name="fadeTime">How much time the fade out will take (in seconds).</param>
-        public void Stop(float fadeTime = 0)
+        public void Stop(float fadeTime = -1)
         {
             // Prevent errors
             if (ActivePlayer.musicEvent == null)
@@ -196,11 +221,9 @@ namespace MusicTC
                 Debug.LogError("ERROR : There is no MusicEvent currently playing.");
                 return;
             }
-            else if (fadeTime < 0)
-            {
-                Debug.LogError("ERROR : The fade time can't be negative.");
-                return;
-            }
+            
+            if (fadeTime < 0)
+                fadeTime = _currentMusicEvent.DefaultFadeTime;
 
             // Use different behaviour based on the type of player selected
             if (useLoggedMusicPlayer)
@@ -218,13 +241,10 @@ namespace MusicTC
         /// </summary>
         /// <param name="newLayer">Which layer to play.</param>
         /// <param name="fadeTime">How much time the fade in will take (in seconds).</param>
-        public void SetLayer(int newLayer, float fadeTime = 0)
+        public void SetLayer(int newLayer, float fadeTime = -1)
         {
             if (fadeTime < 0)
-            {
-                Debug.LogError("ERROR : The fade time can't be negative.");
-                return;
-            }
+                fadeTime = _currentMusicEvent.DefaultFadeTime;
 
             // Use different behaviour based on the type of player selected
             if (useLoggedMusicPlayer)
@@ -235,14 +255,19 @@ namespace MusicTC
             // Increase the layer and apply it to the active MusicPlayer (result depends on the LayerType of the current MusicEvent)
             _currentLayer = Mathf.Clamp(newLayer, 0, maxLayerCount - 1);
             ActivePlayer.Play(_currentMusicEvent, fadeTime);
+
+            CheckCurrentLayerAutoPass();
         }
 
         /// <summary>
         /// Go to the next layer with the given fade in time (different behaviour if the LayerType is Additive or Single).
         /// </summary>
         /// <param name="fadeTime">How much time the fade in will take (in seconds).</param>
-        public void IncreaseLayer(float fadeTime = 0)
+        public void IncreaseLayer(float fadeTime = -1)
         {
+            if (fadeTime < 0)
+                fadeTime = _currentMusicEvent.DefaultFadeTime;
+
             SetLayer(_currentLayer + 1, fadeTime);
         }
 
@@ -250,8 +275,11 @@ namespace MusicTC
         /// Go to the previous layer with the given fade in time (different behaviour if the LayerType is Additive or Single).
         /// </summary>
         /// <param name="fadeTime">How much time the fade in will take (in seconds).</param>
-        public void DecreaseLayer(float fadeTime = 0)
+        public void DecreaseLayer(float fadeTime = -1)
         {
+            if (fadeTime < 0)
+                fadeTime = _currentMusicEvent.DefaultFadeTime;
+
             SetLayer(_currentLayer - 1, fadeTime);
         }
 
@@ -265,7 +293,7 @@ namespace MusicTC
             {
                 if (music.PlayOnAwake && music.SceneToPlayOnAwake == SceneManager.GetActiveScene().buildIndex)
                 {
-                    music.Play(music.DefaultFadeTime);
+                    music.Play(0);
                     return;
                 }
             }

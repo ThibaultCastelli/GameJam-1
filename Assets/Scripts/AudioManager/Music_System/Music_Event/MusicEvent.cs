@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -48,6 +49,7 @@ namespace MusicTC
         [SerializeField] [Range(0, 20)] float defaultFadeTime = 0;
         [Tooltip("The type of layer blend: \nAdditive : All the layer can be play at the same time.\nSingle : Only one layer can be play at the same time.")]
         [SerializeField] LayerType layerType = LayerType.Additive;
+        [SerializeField] List<AudioClip> layersToAutoPass = new List<AudioClip>();
 
 
         /// <summary>
@@ -98,6 +100,8 @@ namespace MusicTC
         public int SceneToPlayOnAwake => sceneToPlayOnAwake;
 
         public float DefaultFadeTime => defaultFadeTime;
+
+        public List<AudioClip> LayersToAutoPass => layersToAutoPass;
         #endregion
 
         #region Functions
@@ -137,6 +141,14 @@ namespace MusicTC
         /// </summary>
         /// <param name="fadeTime">How much time the fade in will take (in seconds).</param>
         public void DecreaseLayer(float fadeTime = 0) { MusicManager.Instance.DecreaseLayer(fadeTime); }
+
+        public AudioClip GetCurrentLayer(int layerCount)
+        {
+            if (layerCount >= musicLayers.Length)
+                return null;
+
+            return musicLayers[layerCount];
+        }
         #endregion
 
         #region Preview Functions
