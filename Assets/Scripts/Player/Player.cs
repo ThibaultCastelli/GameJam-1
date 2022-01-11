@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
 
     [Header("ANIM")]
     [SerializeField] EasingColor flashAnim;
+    [SerializeField] Animator animator;
 
     private Rigidbody2D rb;
 
@@ -81,6 +82,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Shoot();
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            animator.SetTrigger("Death");
+        }
     }
 
     private void FixedUpdate()

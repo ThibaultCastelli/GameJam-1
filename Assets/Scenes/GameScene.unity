@@ -596,8 +596,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5757
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -763,6 +763,7 @@ MonoBehaviour:
   damageSFX: {fileID: 11400000, guid: cecba4be5d36de340b6cfd8b9576645c, type: 2}
   deathSFX: {fileID: 11400000, guid: bf6b0f330a7a6d94595be33cd3e2d654, type: 2}
   flashAnim: {fileID: 1024048560}
+  animator: {fileID: 1024048558}
 --- !u!4 &329296444
 Transform:
   m_ObjectHideFlags: 0
@@ -1531,6 +1532,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 916940730402333586, guid: c0c21fc057e94af45a9b00c6d28059fb, type: 3}
+      propertyPath: useNullSFXPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 916940730402333587, guid: c0c21fc057e94af45a9b00c6d28059fb, type: 3}
       propertyPath: m_Name
       value: SFX_Manager
@@ -1547,6 +1552,10 @@ PrefabInstance:
     - target: {fileID: 3373424542725127271, guid: 6db4fa061ab1afa4eb4a8ef0f831dced, type: 3}
       propertyPath: maxLayerCount
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373424542725127271, guid: 6db4fa061ab1afa4eb4a8ef0f831dced, type: 3}
+      propertyPath: useNullMusicPlayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5613057858453920363, guid: 6db4fa061ab1afa4eb4a8ef0f831dced, type: 3}
       propertyPath: m_RootOrder
