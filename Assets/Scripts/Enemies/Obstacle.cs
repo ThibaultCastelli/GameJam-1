@@ -51,7 +51,7 @@ public class Obstacle : MonoBehaviour, IEnemy
         spriteHeight = spriteRenderer.sprite.bounds.size.y / 1.9f;
 
         cam = Camera.main;
-        camWidth = cam.orthographicSize * cam.aspect * 1.2f;
+        camWidth = cam.orthographicSize * cam.aspect;
 
         GetRandomSprite();
         GetRandomScale();

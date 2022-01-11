@@ -82,10 +82,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Shoot();
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            animator.SetTrigger("Death");
-        }
     }
 
     private void FixedUpdate()
@@ -149,6 +145,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator Die()
     {
+        animator.SetTrigger("Death");
         MusicManager.Instance.Stop(0);
         deathSFX.Play();
         playerDeathNotifier.Notify();
