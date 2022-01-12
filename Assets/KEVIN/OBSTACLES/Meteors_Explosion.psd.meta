@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: 3426988221847265339
     second: Meteors_Explosion_5
+  - first:
+      213: -1419670657675571278
+    second: Meteors_Explosion_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -230,6 +233,27 @@ TextureImporter:
       bones: []
       spriteID: b3067ac71ab1f8f20800000000000000
       internalID: 3426988221847265339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Meteors_Explosion_6
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bfc33ffe015c4ce0800000000000000
+      internalID: -1419670657675571278
       vertices: []
       indices: 
       edges: []

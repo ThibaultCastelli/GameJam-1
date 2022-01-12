@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 666542974629848346}
   - component: {fileID: 666542974629848347}
   - component: {fileID: 666542974629848345}
+  - component: {fileID: 1588553589626978274}
   - component: {fileID: 666542974629848351}
   - component: {fileID: 666542974629848344}
   m_Layer: 0
@@ -111,6 +112,25 @@ MonoBehaviour:
   scoreOnDeath: 100
   dropPowerUpNotifier: {fileID: 11400000, guid: 82b1e4f18d732ec4997f2e79d80e826a, type: 2}
   enemyDeathNotifier: {fileID: 11400000, guid: 0d80fe1a40d710d46b53cbcc60abe0b8, type: 2}
+--- !u!95 &1588553589626978274
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666542974629848340}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9e9143643bd8496c902bc4dd69a201b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &666542974629848351
 Rigidbody2D:
   serializedVersion: 4
