@@ -26,6 +26,9 @@ public class Ranger : MonoBehaviour, IEnemy
     private Pool bulletPool;
 
     private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
+
+    private Animator animator;
 
     private SpriteRenderer sprite;
     private float spriteHeight;
@@ -43,6 +46,9 @@ public class Ranger : MonoBehaviour, IEnemy
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+
+        animator = GetComponent<Animator>();
 
         bulletPool = GetComponentInChildren<Pool>();
 
@@ -82,12 +88,24 @@ public class Ranger : MonoBehaviour, IEnemy
         transform.position = new Vector2(camWidth, yPos);
 
         gameObject.SetActive(true);
+        boxCollider.enabled = true;
         StartCoroutine(shootCoroutine);
+    }
+
+    private IEnumerator Death()
+    {
+        animator.SetTrigger("Death");
+        enemyDeathNotifier.Notify(scoreOnDeath);
+        StopCoroutine(shootCoroutine);
+        boxCollider.enabled = false;
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
+
+        Despawn();
     }
 
     private void Despawn()
     {
-        StopCoroutine(shootCoroutine);
         bulletPool.ResetPool();
         gameObject.SetActive(false);
     }
@@ -98,8 +116,7 @@ public class Ranger : MonoBehaviour, IEnemy
         if (drop)
             dropPowerUpNotifier.Notify(transform.position);
 
-        enemyDeathNotifier.Notify(scoreOnDeath);
-        Despawn();
+        StartCoroutine(Death());
     }
 
     private IEnumerator Shoot()

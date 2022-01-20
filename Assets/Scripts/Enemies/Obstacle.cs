@@ -29,6 +29,9 @@ public class Obstacle : MonoBehaviour, IEnemy
     [SerializeField] NotifierInt enemyDeathNotifier;
 
     private Rigidbody2D rb;
+    private CircleCollider2D circleCollider;
+
+    private Animator animator;
 
     private SpriteRenderer spriteRenderer;
     float spriteHeight;
@@ -45,7 +48,10 @@ public class Obstacle : MonoBehaviour, IEnemy
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
         speed = Random.Range(minSpeed, maxSpeed);
+
+        animator = GetComponent<Animator>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteHeight = spriteRenderer.sprite.bounds.size.y / 1.9f;
@@ -81,7 +87,17 @@ public class Obstacle : MonoBehaviour, IEnemy
         if (drop)
             dropPowerUpNotifier.Notify(transform.position);
 
+        StartCoroutine(Death());
+    }
+
+    private IEnumerator Death()
+    {
+        animator.SetTrigger("Death");
         enemyDeathNotifier.Notify(scoreOnDeath);
+        circleCollider.enabled = false;
+
+        yield return new WaitForSeconds(0.6f);
+
         gameObject.SetActive(false);
     }
 
@@ -93,6 +109,7 @@ public class Obstacle : MonoBehaviour, IEnemy
         GetRandomRotation();
         GetRandomSprite();
 
+        circleCollider.enabled = true;
         gameObject.SetActive(true);
     }
 
