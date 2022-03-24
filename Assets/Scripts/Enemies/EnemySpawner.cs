@@ -43,7 +43,13 @@ public class EnemySpawner : MonoBehaviour
 
     public void StopSpawner()
     {
-        pool.ResetPool();
+        List<GameObject> poolObjs = pool.GetAllActiveObject();
+        foreach (GameObject obj in poolObjs)
+        {
+            IEnemy enemy = obj.GetComponent<IEnemy>();
+            enemy.TakeDamage(57);
+        }
+
         StopAllCoroutines();
     }
 }

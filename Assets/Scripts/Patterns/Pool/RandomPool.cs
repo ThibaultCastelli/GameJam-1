@@ -92,5 +92,23 @@ namespace PoolTC
                     obj.SetActive(false);
             }
         }
+
+        public List<GameObject> GetAllActiveObject()
+        {
+            List<GameObject> output = new List<GameObject>();
+
+            foreach (List<GameObject> pool in pools)
+            {
+                foreach (GameObject obj in pool)
+                {
+                    if (obj.activeInHierarchy)
+                    {
+                        output.Add(obj);
+                    }
+                }
+            }
+
+            return output;
+        }
     }
 }

@@ -40,6 +40,10 @@ public class Player : MonoBehaviour
     [SerializeField] EasingColor flashAnim;
     [SerializeField] Animator animator;
 
+    [Header("LIGHTS")]
+    [SerializeField] GameObject light1;
+    [SerializeField] GameObject light2;
+
     private Rigidbody2D rb;
 
     private Pool bulletPool;
@@ -148,6 +152,8 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Death");
         MusicManager.Instance.Stop(0);
         deathSFX.Play();
+        light1.SetActive(false);
+        light2.SetActive(false);
         playerDeathNotifier.Notify();
 
         speed = 0;
